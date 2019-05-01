@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "userName": "Billy",
+      "email": "billy@gmail.com"
+    }
+  ],
+  "garage": [
+    {
+      "id": 1,
+      "userId": 2,
+      "modelYear": 2004,
+      "Make": "Cadillac",
+      "model": "Escalade",
+      "edition": "Short Body",
+      "mileage": 198000
+    }
+  ],
+  "maintenanceTasks": [
+    {
+      "id": 1,
+      "userId": 1,
+      "taskName": "Change Oil",
+      "taskDescription": "Change oil with 6 quarts of Mobil 1 10w-30 Fully Synthetic and 15,000 mile rated Mobil 1 filter",
+      "targetDate": "2019-07-27",
+      "isComplete": false,
+      "taskMiles": 200000,
+      "apptRequest": false,
+      "taskTimeStamp": "Time",
+      "appointmentDate": "2019-07-1",
+      "masterMechanicId": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "message": "Hi",
+      "userId": 1,
+      "timeStamp": ""
+    }
+  ],
+  "wishList": [
+    {
+      "userId": 1,
+      "wishName": "NFL draft",
+      "wishDesciption": "2019-04-27",
+      "wishTimeStamp": "Nashville,TN",
+      "isComplete": false,
+      "targetDate": "2019-07-1",
+      "id": 1
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "currentUserId": 2,
+      "userId": 1
+    }
+  ]
+}
