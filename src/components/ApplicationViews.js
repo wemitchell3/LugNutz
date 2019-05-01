@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import React, { Component } from "react";
 // import GarageEditForm from "./garage/GarageEditForm";
 import GarageForm from "./garage/GarageForm";
-// import GarageList from "./garage/GarageList";
+import GarageList from "./garage/GarageList";
 import GarageManager from "./garage/GarageManager";
 // import Login from "./loginOut/Login";
 // import LoginForm from "./loginOut/LoginForm";
@@ -42,16 +42,16 @@ class ApplicationViews extends Component {
           garage => (newState.garage = garage)
         )
       )
-    //   .then(() =>
-    //     MaintenanceTaskManager.getAll(currentUserId).then(
-    //       maintenanceTasks => (maintenanceTasks.newState = maintenanceTasks)
-    //     )
-    //   )
-    //   .then(() =>
-    //     MessageManager.getAll(currentUserId).then(
-    //       messages => (messages.newState = messages)
-    //     )
-    //   )
+      //   .then(() =>
+      //     MaintenanceTaskManager.getAll(currentUserId).then(
+      //       maintenanceTasks => (maintenanceTasks.newState = maintenanceTasks)
+      //     )
+      //   )
+      //   .then(() =>
+      //     MessageManager.getAll(currentUserId).then(
+      //       messages => (messages.newState = messages)
+      //     )
+      //   )
       .then(() => this.setState(newState));
   };
 
@@ -69,17 +69,31 @@ class ApplicationViews extends Component {
     );
   };
 
+  deleteVehicle = vehicle => {
+      return GarageManager.deleteVehicle(vehicle).then(() =>
+        this.userSpecificData()
+        )
+  }
+
   render() {
     return (
       <React.Fragment>
         <Route
+          exact
           path="/garage"
           render={props => {
             return (
-              <GarageForm
-                {...props}
-                addGarageVehicle={this.addGarageVehicle}
-              />
+              <GarageList {...props}  garage={this.state.garage} 
+              userSpecificData={this.userSpecificData}
+              deleteVehicle={this.deleteVehicle} />
+            );
+          }}
+        />
+        <Route
+          path="/garage/new"
+          render={props => {
+            return (
+              <GarageForm {...props} addGarageVehicle={this.addGarageVehicle} />
             );
           }}
         />
