@@ -30,9 +30,9 @@ export default class GarageForm extends Component {
       };
       // Create the vehicle and redirect user to the vehicle list
       this.props.addGarageVehicle(vehicle)
-    //   .then(() => 
-    //   this.props.history.push("/garage")
-    //   );
+      .then(() => 
+      this.props.history.push("/garage")
+      );
     }
   };
   

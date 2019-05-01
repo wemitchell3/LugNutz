@@ -15,5 +15,10 @@ export default {
             },
             body: JSON.stringify(newVehicle)
         }).then(data => data.json())
+    },
+    deleteVehicle(id) {
+        return fetch(`${url}/garage/${id}`, {
+            method: "DELETE"
+        })
     }
 }
