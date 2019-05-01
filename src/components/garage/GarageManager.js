@@ -20,5 +20,14 @@ export default {
         return fetch(`${url}/garage/${id}`, {
             method: "DELETE"
         })
+    },
+    putVehicle(editiedVehicle) {
+        return fetch(`${url}/garage/${editiedVehicle.id}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(editiedVehicle)
+        }).then(data => data.json())
     }
 }
