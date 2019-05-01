@@ -4,6 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## Project links to Initial Proposl, Mock Up, and ERD. 
+
+Initial Proposal [https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p](https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p)<br>
+Mock Up[https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae](https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae)<br>
+ERD [https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7](https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7)<br>
+
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
