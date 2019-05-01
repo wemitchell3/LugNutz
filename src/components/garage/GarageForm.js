@@ -39,7 +39,6 @@ export default class GarageForm extends Component {
   handleFieldChange = event => {
     const stateToChange = {};
     stateToChange[event.target.id] = event.target.value;
-    console.log(stateToChange);
     this.setState(stateToChange);
   };
 

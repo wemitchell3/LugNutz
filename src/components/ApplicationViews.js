@@ -1,7 +1,7 @@
 import { withRouter } from "react-router";
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-// import GarageEditForm from "./garage/GarageEditForm";
+import GarageEditForm from "./garage/GarageEditForm";
 import GarageForm from "./garage/GarageForm";
 import GarageList from "./garage/GarageList";
 import GarageManager from "./garage/GarageManager";
@@ -72,8 +72,14 @@ class ApplicationViews extends Component {
   deleteVehicle = vehicle => {
       return GarageManager.deleteVehicle(vehicle).then(() =>
         this.userSpecificData()
-        )
+        );
+  };
+  
+  updateVehicle = editiedVehicle => {
+    return GarageManager.putVehicle(editiedVehicle)
+    .then(() => this.userSpecificData())
   }
+
 
   render() {
     return (
@@ -95,6 +101,16 @@ class ApplicationViews extends Component {
             return (
               <GarageForm {...props} addGarageVehicle={this.addGarageVehicle} />
             );
+          }}
+        />
+        <Route
+          exact
+          path="/garage/:vehicleId(\d+)/edit"
+          render={props => {
+            return <GarageEditForm {...props} 
+            updateVehicle={this.updateVehicle} 
+            userSpecificData={this.userSpecificData} 
+            />
           }}
         />
       </React.Fragment>
