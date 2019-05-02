@@ -5,8 +5,8 @@ import GarageEditForm from "./garage/GarageEditForm"
 import GarageForm from "./garage/GarageForm"
 import GarageList from "./garage/GarageList"
 import GarageManager from "./garage/GarageManager"
-// import Login from "./loginOut/Login"
-// import LoginForm from "./loginOut/LoginForm"
+import Login from "./loginOut/Login"
+import RegistrationForm from "./loginOut/RegistrationForm"
 import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditForm"
 import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksForm"
 import MaintenanceTasksList from "./maintenanceTasks/MaintenanceTasksList"
@@ -34,8 +34,7 @@ class ApplicationViews extends Component {
 
   userSpecificData = () => {
     const newState = {}
-    let currentUserId = 1
-    // let currentUserId = userId: Number(sessionStorage.getItem("userId"))
+    let currentUserId = sessionStorage.getItem("userId")
     UserManager.getAll(currentUserId)
     .then(users => (newState.users = users))
     .then(() => GarageManager.getAll(currentUserId))
@@ -50,13 +49,16 @@ class ApplicationViews extends Component {
     .then(() => this.setState(newState))
   }
 
-  //   onLogin = () => {
-  //     this.userSpecificData()
-  //   }
+  onLogin = () => {
+    this.userSpecificData()
+  }
 
-  //   onLogout = () => {
-  //     sessionStorage.clear()
-  //   }
+  addUser = user =>
+    UserManager.postUser(user)
+    
+  onLogout = () => {
+    sessionStorage.clear()
+  }
 
   addVehicle = vehicle => {
     return GarageManager.postVehicle(vehicle).then(() =>
@@ -112,6 +114,27 @@ class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
+        <Route 
+        exact 
+        path="/" 
+        render={props => {
+          return <Login {...props} 
+          onLogin={this.onLogin} 
+          userSpecificData={this.userSpecificData} 
+           />
+        }}
+        />
+        <Route 
+        exact 
+        path="/login/new" 
+        render={props => {
+          return <RegistrationForm {...props} 
+          addUser={this.addUser} 
+          onLogin={this.onLogin} 
+          userSpecificData={this.userSpecificData}
+            />    
+        }}
+        />
         <Route
           exact
           path="/garage"
