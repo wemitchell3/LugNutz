@@ -21,13 +21,13 @@ export default {
             method: "DELETE"
         })
     },
-    putVehicle(editiedVehicle) {
-        return fetch(`${url}/garage/${editiedVehicle.id}`, {
+    putVehicle(editedVehicle) {
+        return fetch(`${url}/garage/${editedVehicle.id}`, {
             method:"PUT",
             headers: {
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify(editiedVehicle)
+            body: JSON.stringify(editedVehicle)
         }).then(data => data.json())
     }
 }
