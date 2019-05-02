@@ -25,5 +25,10 @@ export default {
             },
             body: JSON.stringify(editedTask)
         }).then(data => data.json())
+    },
+    deleteTask(id) {
+        return fetch(`${url}/maintenanceTasks/${id}`, {
+            method: "DELETE"
+        })
     }
 }

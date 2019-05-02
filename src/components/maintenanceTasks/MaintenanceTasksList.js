@@ -34,12 +34,12 @@ export default class MaintenanceTasksList extends Component {
                 {/* <Moment>{task.taskTimeStamp}</Moment> */}
                 {/* <h6>Task Appointment Date: {task.appointmentDate} </h6>
                 <h6>Mechanic Assigned To Task: {task.masterMechanicId} </h6> */}
-                {/* <button
+                <button
                     onClick={() => this.props.deleteTask(task.id)}
                     className="btn btn-success"
                 >
                     Delete
-                </button> */}
+                </button>
                 <button
                     onClick={() => {this.props.history.push(`/maintenanceTasks/${task.id}/edit`)}}
                   className="btn btn-success"
