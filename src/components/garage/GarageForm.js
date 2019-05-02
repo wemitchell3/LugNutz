@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./garage.css";
+import React, { Component } from "react"
+import "./garage.css"
 
 export default class GarageForm extends Component {
   // Set initial state for the garage component
@@ -10,15 +10,15 @@ export default class GarageForm extends Component {
     model: "",
     edition: "",
     engineSize: ""
-  };
+  }
 
   // Local method for input validation, creating a garage object, and
   // invoking the function reference passed from parent component
 
   constructNewVehicle = event => {
-    event.preventDefault();
+    event.preventDefault()
     if (this.state.garage === "") {
-      window.alert("Please enter a Vehicle");
+      window.alert("Please enter a Vehicle")
     } else {
       const vehicle = {
         userId: Number(sessionStorage.getItem("userId")),
@@ -27,20 +27,20 @@ export default class GarageForm extends Component {
         model: this.state.model,
         edition: this.state.edition,
         engineSize: this.state.engineSize,
-      };
+      }
       // Create the vehicle and redirect user to the vehicle list
-      this.props.addGarageVehicle(vehicle)
+      this.props.addVehicle(vehicle)
       .then(() => 
       this.props.history.push("/garage")
-      );
+      )
     }
-  };
+  }
   
   handleFieldChange = event => {
-    const stateToChange = {};
-    stateToChange[event.target.id] = event.target.value;
-    this.setState(stateToChange);
-  };
+    const stateToChange = {}
+    stateToChange[event.target.id] = event.target.value
+    this.setState(stateToChange)
+  }
 
   // Create form elements and capture user inputs when submit is clicked
   render() {
@@ -113,6 +113,6 @@ export default class GarageForm extends Component {
           </form>
         </section>
       </React.Fragment>
-    );
+    )
   }
 }
