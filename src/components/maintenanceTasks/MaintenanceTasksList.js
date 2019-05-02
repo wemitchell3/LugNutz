@@ -39,13 +39,13 @@ export default class MaintenanceTasksList extends Component {
                     className="btn btn-success"
                 >
                     Delete
-                </button>
+                </button> */}
                 <button
                     onClick={() => {this.props.history.push(`/maintenanceTasks/${task.id}/edit`)}}
                   className="btn btn-success"
                 >
                     Edit
-                </button> */}
+                </button>
               </div>
             </div>
           ))}
