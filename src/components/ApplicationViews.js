@@ -7,7 +7,7 @@ import GarageList from "./garage/GarageList"
 import GarageManager from "./garage/GarageManager"
 // import Login from "./loginOut/Login"
 // import LoginForm from "./loginOut/LoginForm"
-// import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditForm"
+import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditForm"
 import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksForm"
 import MaintenanceTasksList from "./maintenanceTasks/MaintenanceTasksList"
 import MaintenanceTasksManager from "./maintenanceTasks/MaintenanceTasksManager"
@@ -35,6 +35,7 @@ class ApplicationViews extends Component {
   userSpecificData = () => {
     const newState = {}
     let currentUserId = 1
+    // let currentUserId = userId: Number(sessionStorage.getItem("userId"))
     UserManager.getAll(currentUserId)
     .then(users => (newState.users = users))
     .then(() => GarageManager.getAll(currentUserId))
@@ -74,10 +75,15 @@ class ApplicationViews extends Component {
     .then(() => this.userSpecificData())
   }
 
-  addMaintenanceTask = task => {
+  addTask = task => {
     return MaintenanceTasksManager.postTask(task).then(() =>
       this.userSpecificData()
     )
+  }
+
+  updateTask = editedTask => {
+    return MaintenanceTasksManager.putTask(editedTask)
+    .then(() => this.userSpecificData())
   }
 
   getDate = date => {
@@ -91,10 +97,10 @@ class ApplicationViews extends Component {
     let day = date.getDate()
     let monthIndex = date.getMonth()
     let year = date.getFullYear()
-    let hour = date.getHours()
-    let minutes = date.getMinutes()
+    // let hour = date.getHours()
+    // let minutes = date.getMinutes()
   
-    return monthNames[monthIndex]  + ' ' + day + ' ' + year + ' ' + hour + ':' + minutes
+    return monthNames[monthIndex]  + ' ' + day + ' ' + year 
   }
 
   render() {
@@ -152,9 +158,21 @@ class ApplicationViews extends Component {
           render={props => {
             return (
               <MaintenanceTasksForm {...props} 
-              addMaintenanceTask={this.addMaintenanceTask}
+              addTask={this.addTask}
               getDate={this.getDate} 
               />
+            )
+          }}
+        />
+        <Route
+          exact
+          path="/maintenanceTasks/:taskId(\d+)/edit"
+          render={props => {
+            return (
+            <MaintenanceTasksEditForm {...props} 
+            updateTask={this.updateTask} 
+            userSpecificData={this.userSpecificData} 
+            />
             )
           }}
         />

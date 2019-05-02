@@ -1,6 +1,9 @@
 const url = "http://localhost:8088"
 
 export default {
+    get(id) {
+        return fetch(`${url}/maintenanceTasks/${id}`).then(l => l.json())
+    },
     getAll(currentUserId) {
         return fetch(`${url}/maintenanceTasks?userId=${currentUserId}&isComplete=false`)
         .then(l => l.json())
@@ -12,6 +15,15 @@ export default {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newTask)
+        }).then(data => data.json())
+    },
+    putTask(editedTask) {
+        return fetch(`${url}/maintenanceTasks/${editedTask.id}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(editedTask)
         }).then(data => data.json())
     }
 }

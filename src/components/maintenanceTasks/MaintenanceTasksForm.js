@@ -24,7 +24,7 @@ export default class MaintenanceTasksForm extends Component {
   
   constructNewTask = event => {
     event.preventDefault()
-
+    console.log(new Date())
     // let timeStamp = new Date()
 
     if (this.state.maintenanceTasks === "") {
@@ -44,7 +44,7 @@ export default class MaintenanceTasksForm extends Component {
         masterMechanicId: this.state.masterMechanicId,
       }
       // Create the task and redirect user to the task list
-      this.props.addMaintenanceTask(task)
+      this.props.addTask(task)
       .then(() => 
       this.props.history.push("/maintenanceTasks")
       )
