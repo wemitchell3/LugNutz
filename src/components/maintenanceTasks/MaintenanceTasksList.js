@@ -10,7 +10,7 @@ export default class MaintenanceTasksList extends Component {
           <div className="taskButton">
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-primary"
               onClick={() => {
                 this.props.history.push("/maintenanceTasks/new")
               }}
@@ -36,13 +36,13 @@ export default class MaintenanceTasksList extends Component {
                 <h6>Mechanic Assigned To Task: {task.masterMechanicId} </h6> */}
                 <button
                     onClick={() => this.props.deleteTask(task.id)}
-                    className="btn btn-success"
+                    className="btn btn-primary"
                 >
                     Delete
                 </button>
                 <button
                     onClick={() => {this.props.history.push(`/maintenanceTasks/${task.id}/edit`)}}
-                  className="btn btn-success"
+                  className="btn btn-primary"
                 >
                     Edit
                 </button>

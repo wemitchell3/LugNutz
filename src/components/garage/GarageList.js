@@ -8,7 +8,7 @@ export default class GarageList extends Component {
           <div className="taskButton">
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-primary"
               onClick={() => {
                 this.props.history.push("/garage/new")
               }}
@@ -30,13 +30,13 @@ export default class GarageList extends Component {
                 <h6>Engine Size: {vehicle.engineSize} </h6>
                 <button 
                   onClick={() => this.props.deleteVehicle(vehicle.id)}
-                  className="btn btn-success"
+                  className="btn btn-primary"
                 >
                   Delete
                 </button>
                 <button
                   onClick={() => {this.props.history.push(`/garage/${vehicle.id}/edit`)}}
-                  className="btn btn-success"
+                  className="btn btn-primary"
                 >
                   Edit
                 </button>
