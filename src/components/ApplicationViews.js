@@ -81,6 +81,12 @@ class ApplicationViews extends Component {
     )
   }
 
+  deleteTask = task => {
+    return MaintenanceTasksManager.deleteTask(task).then(() =>
+      this.userSpecificData()
+      )
+}
+
   updateTask = editedTask => {
     return MaintenanceTasksManager.putTask(editedTask)
     .then(() => this.userSpecificData())
@@ -149,6 +155,7 @@ class ApplicationViews extends Component {
               <MaintenanceTasksList {...props} 
               maintenanceTasks={this.state.maintenanceTasks} 
               userSpecificData={this.userSpecificData}
+              deleteTask={this.deleteTask}
               />
             )
           }}
