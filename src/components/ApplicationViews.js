@@ -1,5 +1,5 @@
 import { withRouter } from "react-router"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react"
 import GarageEditForm from "./garage/GarageEditForm"
 import GarageForm from "./garage/GarageForm"
@@ -11,10 +11,10 @@ import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditFor
 import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksForm"
 import MaintenanceTasksList from "./maintenanceTasks/MaintenanceTasksList"
 import MaintenanceTasksManager from "./maintenanceTasks/MaintenanceTasksManager"
-// import MessageEditForm from "./messages/MessageEditForm"
-// import MessageForm from "./messages/MessageForm"
-// import MessageList from "./messages/MessageList"
-// import MessageManager from "./messages/MessageManager"
+import MessageEditForm from "./messages/MessageEditForm"
+import MessageForm from "./messages/MessageForm"
+import MessageList from "./messages/MessageList"
+import MessageManager from "./messages/MessageManager"
 import UserManager from "./users/UserManager"
 
 class ApplicationViews extends Component {
@@ -34,18 +34,17 @@ class ApplicationViews extends Component {
 
   userSpecificData = () => {
     const newState = {}
+    
     let currentUserId = sessionStorage.getItem("userId")
+    
     UserManager.getAll(currentUserId)
     .then(users => (newState.users = users))
     .then(() => GarageManager.getAll(currentUserId))
     .then(garage => (newState.garage = garage))
     .then(() => MaintenanceTasksManager.getAll(currentUserId))
     .then(maintenanceTasks => (newState.maintenanceTasks = maintenanceTasks))
-      //   .then(() =>
-      //     MessageManager.getAll(currentUserId).then(
-      //       messages => (newState.messages = messages)
-      //     )
-      //   )
+    .then(() =>MessageManager.getAll(currentUserId)
+    .then(messages => (newState.messages = messages)))
     .then(() => this.setState(newState))
   }
 
@@ -55,10 +54,6 @@ class ApplicationViews extends Component {
 
   addUser = user =>
     UserManager.postUser(user)
-    
-  onLogout = () => {
-    sessionStorage.clear()
-  }
 
   addVehicle = vehicle => {
     return GarageManager.postVehicle(vehicle).then(() =>
@@ -91,6 +86,27 @@ class ApplicationViews extends Component {
 
   updateTask = editedTask => {
     return MaintenanceTasksManager.putTask(editedTask)
+    .then(() => this.userSpecificData())
+  }
+
+  addMessage = message => {
+    return MessageManager.postMessage(message)
+    .then(() =>MessageManager.getAll()
+    .then(messages => this.setState({ "messages" : messages })))
+    .then(() => this.userSpecificData())
+  }
+
+  deleteMessage = message => {
+    return MessageManager.deleteMessage(message)
+    .then(() =>MessageManager.getAll()
+    .then(messages => this.setState({ "messages" : messages })))
+    .then(() => this.userSpecificData())
+  }
+
+  updateMessage = editedMessage => {
+    return MessageManager.putMessage(editedMessage)
+    .then(() =>MessageManager.getAll())
+    .then(messages => this.setState({ "messages" : messages }))
     .then(() => this.userSpecificData())
   }
 
@@ -139,13 +155,16 @@ class ApplicationViews extends Component {
           exact
           path="/garage"
           render={props => {
-            return (
-              <GarageList {...props}
+            if (this.isAuthenticated()) {
+            return <GarageList {...props}
               garage={this.state.garage} 
               userSpecificData={this.userSpecificData}
               deleteVehicle={this.deleteVehicle} 
               />
-            )
+            } else {
+              return < Redirect to="/"
+              />
+            }
           }}
         />
         <Route
@@ -174,13 +193,16 @@ class ApplicationViews extends Component {
           exact
           path="/maintenanceTasks"
           render={props => {
-            return (
-              <MaintenanceTasksList {...props} 
+            if (this.isAuthenticated()) {
+            return <MaintenanceTasksList {...props} 
               maintenanceTasks={this.state.maintenanceTasks} 
               userSpecificData={this.userSpecificData}
               deleteTask={this.deleteTask}
               />
-            )
+            } else {
+              return < Redirect to="/"
+              />
+            }
           }}
         />
         <Route
@@ -201,6 +223,46 @@ class ApplicationViews extends Component {
             return (
             <MaintenanceTasksEditForm {...props} 
             updateTask={this.updateTask} 
+            userSpecificData={this.userSpecificData} 
+            />
+            )
+          }}
+        />
+        <Route
+          exact
+          path="/messages"
+          render={props => {
+            if (this.isAuthenticated()) {
+            return <MessageList {...props}
+              messages={this.state.messages.reverse()} 
+              userSpecificData={this.userSpecificData}
+              users={this.state.users} 
+              addMessage={this.addMessage}
+              deleteMessage={this.deleteMessage} 
+              />
+            } else {
+              return < Redirect to="/"
+              />
+            }
+          }}
+        />
+        <Route
+          path="/messages/new"
+          render={props => {
+            return (
+              <MessageForm {...props}  
+              userSpecificData={this.userSpecificData}
+              />
+            )
+          }}
+        />
+        <Route
+          exact
+          path="/messages/:messageId(\d+)/edit"
+          render={props => {
+            return (
+            <MessageEditForm {...props} 
+            updateMessage={this.updateMessage} 
             userSpecificData={this.userSpecificData} 
             />
             )

@@ -31,8 +31,8 @@ export default class MaintenanceTasksForm extends Component {
       window.alert("Please enter a task")
     } else {
       const task = {
-        userId: 1,
-        // userId: Number(sessionStorage.getItem("userId")),
+        userId: Number(sessionStorage.getItem("userId")),
+        // userId: 
         taskName: this.state.taskName,
         taskDescription: this.state.taskDescription,
         targetDate: this.state.targetDate,
