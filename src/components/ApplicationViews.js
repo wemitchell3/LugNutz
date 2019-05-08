@@ -1,12 +1,13 @@
 import { withRouter } from "react-router"
 import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
 import GarageEditForm from "./garage/GarageEditForm"
 import GarageForm from "./garage/GarageForm"
 import GarageList from "./garage/GarageList"
 import GarageManager from "./garage/GarageManager"
-import Login from "./loginOut/Login"
-import RegistrationForm from "./loginOut/RegistrationForm"
+import Login from "./login/Login"
+import RegistrationForm from "./login/RegistrationForm"
 import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditForm"
 import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksForm"
 import MaintenanceTasksList from "./maintenanceTasks/MaintenanceTasksList"
@@ -72,6 +73,13 @@ class ApplicationViews extends Component {
     .then(() => this.userSpecificData())
   }
 
+  vehicleTasksSelector = (vehicleId) => {
+    let currentUserId = sessionStorage.getItem("userId")
+    return MaintenanceTasksManager.getVehicleTasks(currentUserId, vehicleId)
+    .then(r => this.setState({ maintenanceTasks : r }))
+    .then(() => this.props.history.push("/maintenanceTasks/"))
+  }
+
   addTask = task => {
     return MaintenanceTasksManager.postTask(task).then(() =>
       this.userSpecificData()
@@ -82,7 +90,7 @@ class ApplicationViews extends Component {
     return MaintenanceTasksManager.deleteTask(task).then(() =>
       this.userSpecificData()
       )
-}
+  }
 
   updateTask = editedTask => {
     return MaintenanceTasksManager.putTask(editedTask)
@@ -116,15 +124,47 @@ class ApplicationViews extends Component {
       "April", "May", "June", "July",
       "August", "September", "October",
       "November", "December"
-    ];
-  
+    ]
+
     let day = date.getDate()
     let monthIndex = date.getMonth()
     let year = date.getFullYear()
-    // let hour = date.getHours()
-    // let minutes = date.getMinutes()
   
     return monthNames[monthIndex]  + ' ' + day + ' ' + year 
+  }
+
+  getDateTime = () => {
+    let months = [
+      "Jan", "Feb", "Mar", "Apr", 
+      "May", "Jun", "Jul", "Aug", 
+      "Sep", "Oct", "Nov", "Dec"
+    ]
+
+    let days = [
+      "Sunday", "Monday", "Tuesday", "Wednesday", 
+      "Thursday", "Friday", "Saturday"
+    ]
+
+    let d = new Date()
+    let day = days[d.getDay()]
+    let hr = d.getHours()
+    
+    let min = d.getMinutes()
+      if (min < 10) {
+        min = "0" + min
+      }
+    
+    let ampm = "am"
+      if( hr > 12 ) {
+        hr -= 12
+        ampm = "pm"
+    }
+
+    let date = d.getDate()
+    let month = months[d.getMonth()]
+    let year = d.getFullYear()
+
+    return day + " " + hr + ":" + min + ampm + " " + month + " " + date + " " + year
   }
 
   render() {
@@ -136,7 +176,6 @@ class ApplicationViews extends Component {
         render={props => {
           return <Login {...props} 
           onLogin={this.onLogin} 
-          userSpecificData={this.userSpecificData} 
            />
         }}
         />
@@ -158,8 +197,10 @@ class ApplicationViews extends Component {
             if (this.isAuthenticated()) {
             return <GarageList {...props}
               garage={this.state.garage} 
+              allTasks={this.state.allTasks}
               userSpecificData={this.userSpecificData}
               deleteVehicle={this.deleteVehicle} 
+              vehicleTasksSelector={this.vehicleTasksSelector}
               />
             } else {
               return < Redirect to="/"
@@ -195,7 +236,10 @@ class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
             return <MaintenanceTasksList {...props} 
-              maintenanceTasks={this.state.maintenanceTasks} 
+              allTasks={this.state.allTasks}
+              maintenanceTasks={this.state.maintenanceTasks}
+              vehicleTasksSelector={this.vehicleTasksSelector}
+              garage={this.state.garage} 
               userSpecificData={this.userSpecificData}
               deleteTask={this.deleteTask}
               />
@@ -209,7 +253,8 @@ class ApplicationViews extends Component {
           path="/maintenanceTasks/new"
           render={props => {
             return (
-              <MaintenanceTasksForm {...props} 
+              <MaintenanceTasksForm {...props}
+              garage={this.state.garage} 
               addTask={this.addTask}
               getDate={this.getDate} 
               />
@@ -221,7 +266,8 @@ class ApplicationViews extends Component {
           path="/maintenanceTasks/:taskId(\d+)/edit"
           render={props => {
             return (
-            <MaintenanceTasksEditForm {...props} 
+            <MaintenanceTasksEditForm {...props}
+            garage={this.state.garage} 
             updateTask={this.updateTask} 
             userSpecificData={this.userSpecificData} 
             />
@@ -239,6 +285,7 @@ class ApplicationViews extends Component {
               users={this.state.users} 
               addMessage={this.addMessage}
               deleteMessage={this.deleteMessage} 
+              getDateTime={this.getDateTime}
               />
             } else {
               return < Redirect to="/"

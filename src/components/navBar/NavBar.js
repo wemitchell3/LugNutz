@@ -1,44 +1,57 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { } from "react"
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 
+export default class NavBar extends React.Component {
+  constructor(props) {
+    super(props)
 
-class NavBar extends Component {
-    render() {
-        return (
-            <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
-                <ul className="nav nav-pills nav-fill">
-                <li className="nav-item">
-                        <Link className="nav-link" to="/">Login</Link>
-                    </li>
-                    {/* <li className="nav-item">
-                        <Link className="nav-link" to="/dashboard">Dashboard</Link>
-                    </li> */}
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/garage">Garage</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/maintenanceTasks">Maintenance Tasks</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/messages">Chat Forum</Link>
-                    </li>
-                    {/* <li className="nav-item">
-                        <Link className="nav-link" to="/wishList">Wish List</Link>
-                    </li> */}
-                    {/* <li className="nav-item">
-                        <Link className="nav-link" to="/friends">Friends</Link>
-                    </li> */}
-                    <li className="nav-item">
-                        <Link 
-                        onClick={() => sessionStorage.clear()} className="nav-link" to="/">
-                        Logout
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
-        )
+    this.toggleNavbar = this.toggleNavbar.bind(this)
+    this.state = {
+      collapsed: true
     }
-}
+  }
 
-export default NavBar
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
+  render() {
+    return (
+      <div className="fixed-top">
+        <Navbar color="light" light>
+          <NavbarBrand href="/" className="mr-auto">
+            LugNutz
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="/">LogIn</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/garage/">Garage</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/maintenanceTasks/">Maintenance Tasks</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/messages/">Chat Forum</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  onClick={() => sessionStorage.clear()}
+                  className="nav-link"
+                  href="/"
+                >
+                  Logout
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    )
+  }
+}

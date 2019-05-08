@@ -4,63 +4,127 @@
       "id": 1,
       "userName": "Billy",
       "email": "billy@gmail.com"
+    },
+    {
+      "userName": "Alex",
+      "email": "alex@gmail.com",
+      "id": 2
+    },
+    {
+      "userName": "Rose",
+      "email": "rose@gmail.com",
+      "id": 3
+    },
+    {
+      "userName": "Emily",
+      "email": "emily@gmail.com",
+      "id": 4
+    },
+    {
+      "userName": "Lee",
+      "email": "lee@gmail.com",
+      "id": 5
+    },
+    {
+      "userName": "josh",
+      "email": "josh@gmail.com",
+      "id": 6
+    },
+    {
+      "userName": "jon",
+      "email": "jon@gmail.com",
+      "id": 7
+    },
+    {
+      "userName": "jisie",
+      "email": "jisie@gmail.com",
+      "id": 8
     }
   ],
   "garage": [
     {
-      "id": 1,
-      "userId": 2,
-      "modelYear": 2004,
-      "Make": "Cadillac",
-      "model": "Escalade",
-      "edition": "Short Body",
-      "mileage": 198000
-    },
-    {
-      "id": 2,
-      "modelYear": "2019",
-      "make": "Ford",
-      "model": "F150",
-      "edition": "Raptor",
-      "engineSize": "5.4L Turbo Charged",
-      "userId": 1
-    },
-    {
       "userId": 1,
+      "modelYear": "2004",
+      "make": "Cadillac",
+      "model": "Escalade",
+      "edition": "Base AWD",
+      "engineSize": "6.0L V8 LQ9 ",
+      "id": 1
+    },
+    {
+      "id": 3,
       "modelYear": "2014",
       "make": "Ram",
       "model": "1500",
       "edition": "Crew Cab Sport ",
       "engineSize": "5.7L Hemi",
-      "id": 3
+      "currentMileage": 0,
+      "userId": 1
     },
     {
-      "userId": 1,
+      "userId": 2,
       "modelYear": "2019",
+      "make": "Honda",
+      "model": "Civic",
+      "edition": "SE",
+      "engineSize": "4cyl",
+      "id": 5
+    },
+    {
+      "id": 2,
+      "modelYear": "2008",
       "make": "Cadillac",
-      "model": "F150",
-      "edition": "Raptor",
-      "engineSize": "5.4L Turbo",
-      "id": 4
+      "model": "CTS",
+      "edition": "base 4 door sports car",
+      "engineSize": "3.6L",
+      "userId": 4
+    },
+    {
+      "id": 8,
+      "modelYear": "2012",
+      "make": "Kia",
+      "model": "Optima",
+      "edition": "SDX",
+      "engineSize": "4Cyl Turbo",
+      "userId": 5
+    },
+    {
+      "id": 9,
+      "modelYear": "2012",
+      "make": "Cadillac",
+      "model": "SRX",
+      "edition": "Luxury",
+      "engineSize": "3.6L V6",
+      "userId": 6
+    },
+    {
+      "id": 10,
+      "modelYear": "2016",
+      "make": "BMW",
+      "model": "X1",
+      "edition": "N/A",
+      "engineSize": "V4 Turbo",
+      "userId": 8
     }
   ],
   "maintenanceTasks": [
     {
       "userId": 1,
-      "id": 1,
-      "taskName": "Change Oil",
+      "vehicleId": 1,
+      "taskName": "Change Oil and Filter",
       "taskDescription": "Change oil with 6 quarts of Mobil 1 10w-30 Fully Synthetic and 15,000 mile rated Mobil 1 filter",
       "targetDate": "2019-07-27",
       "isComplete": false,
-      "taskMileage": 200000,
+      "taskMileage": "200,000",
       "apptRequest": false,
       "taskTimeStamp": "May 2 2019",
       "appointmentDate": "2019-07-1",
-      "masterMechanicId": 1
+      "masterMechanicId": 1,
+      "id": 1
     },
     {
-      "id": 2,
       "userId": 1,
+      "vehicleId": 1,
       "taskName": "Transmission Flush",
       "taskDescription": "Have transmission Fluid Flushed",
       "targetDate": "2019-07-27",
@@ -69,10 +133,12 @@
       "apptRequest": false,
       "taskTimeStamp": "May 2 2019",
       "appointmentDate": "2019-07-1",
-      "masterMechanicId": 1
+      "masterMechanicId": 1,
+      "id": 2
     },
     {
       "userId": 1,
+      "vehicleId": 1,
       "taskName": "Replace Driver Rear Axle, bearing, and seal.",
       "taskDescription": "Replace Driver Rear Axle, bearing, and seal. This will require removing the wheel and brake assembly. Will require a bearing puller/slide hammer.",
       "targetDate": "07-30-2019",
@@ -86,6 +152,7 @@
     },
     {
       "userId": 1,
+      "vehicleId": 1,
       "taskName": "Re-Attach Passenger Seat Cover",
       "taskDescription": "Remove passenger seat bottom and re-attach the leather seat cover.",
       "targetDate": "07-30-2019",
@@ -99,14 +166,185 @@
     },
     {
       "userId": 1,
-      "id": 5,
+      "vehicleId": 1,
       "taskName": "Install Driver Seat Heater",
       "taskDescription": "Remove driver side leather seat cover, attach the heating pad and re-attach the seat cover to the seat bottom.",
       "targetDate": "07-30-2019",
-      "isComplete": true,
+      "isComplete": false,
       "taskMileage": "220000",
       "apptRequest": "",
       "taskTimeStamp": "May 2 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "vehicleId": 1,
+      "taskName": "afdasdfsadf",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": true,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 2 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "taskName": "Change Civic Oil",
+      "taskDescription": "change oil",
+      "targetDate": "lakjdsflkj",
+      "isComplete": false,
+      "taskMileage": "809528345093",
+      "apptRequest": "",
+      "taskTimeStamp": "May 3 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "taskName": "Change oil",
+      "taskDescription": "Take car to Valvoline to change oil with Mobil 1 10-W30",
+      "targetDate": "7-1-19",
+      "isComplete": false,
+      "taskMileage": "220000",
+      "apptRequest": "",
+      "taskTimeStamp": "May 4 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 9
+    },
+    {
+      "userId": 5,
+      "taskName": "Change Oil",
+      "taskDescription": "Change oil and filter with mobil 1syn",
+      "targetDate": "7-1-19",
+      "isComplete": false,
+      "taskMileage": "78,000",
+      "apptRequest": "",
+      "taskTimeStamp": "May 4 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 10
+    },
+    {
+      "userId": 6,
+      "taskName": "Fix Rear Hatch Wire Harnes",
+      "taskDescription": "Replace rear hatch wire harness and protect from future water damage.",
+      "targetDate": "2019-05-06",
+      "isComplete": false,
+      "taskMileage": "N/A",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 12
+    },
+    {
+      "userId": 6,
+      "taskName": "asdfasdfasdf",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": false,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 13
+    },
+    {
+      "userId": 6,
+      "taskName": "asdfasdgdsgseragter",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": false,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 14
+    },
+    {
+      "userId": 6,
+      "id": 15,
+      "taskName": "ewrtewryrweyurt",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": true,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": ""
+    },
+    {
+      "userId": 8,
+      "taskName": "Change Oil",
+      "taskDescription": "Change oil with fully synthetic 10-w3- oil and high mileage filter",
+      "targetDate": "2019-05-31",
+      "isComplete": false,
+      "taskMileage": "30,000",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 16
+    },
+    {
+      "userId": 8,
+      "id": 17,
+      "taskName": "Change Transmission Fluid",
+      "taskDescription": "lkajdsflkjsaf",
+      "targetDate": "2020-11-30",
+      "isComplete": false,
+      "taskMileage": "75,000",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": ""
+    },
+    {
+      "userId": 8,
+      "taskName": "adsfasdf",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": false,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 18
+    },
+    {
+      "userId": 8,
+      "taskName": "asdfasdfsadf",
+      "taskDescription": "asdfsadf",
+      "targetDate": "",
+      "isComplete": false,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
+      "appointmentDate": "",
+      "masterMechanicId": "",
+      "id": 19
+    },
+    {
+      "userId": 8,
+      "id": 21,
+      "taskName": "rtiyrtiiuir",
+      "taskDescription": "",
+      "targetDate": "",
+      "isComplete": true,
+      "taskMileage": "",
+      "apptRequest": "",
+      "taskTimeStamp": "May 6 2019",
       "appointmentDate": "",
       "masterMechanicId": ""
     }
@@ -114,9 +352,43 @@
   "messages": [
     {
       "id": 1,
-      "message": "Hi",
+      "message": "Hello",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "message": "test6",
+      "userId": 3
+    },
+    {
+      "message": "Can someone help me with my car? I think I broke it again.",
+      "userId": 4,
+      "id": 6
+    },
+    {
+      "message": "I have no idea how to fix cars...go ask someone else.",
       "userId": 1,
-      "timeStamp": "May 2 2019"
+      "id": 7
+    },
+    {
+      "message": "Yeah, I'm with Billy...good luck with that!",
+      "userId": 5,
+      "id": 8
+    },
+    {
+      "id": 9,
+      "message": "Yeah, can someone help me with my rear hatch wire harness?",
+      "userId": 6
+    },
+    {
+      "id": 11,
+      "message": "Does anyone know where I should take my car to get my oil changed? I have a BMW.",
+      "userId": 8
+    },
+    {
+      "message": "hi",
+      "userId": 1,
+      "id": 12
     }
   ],
   "wishList": [

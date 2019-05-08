@@ -1,10 +1,14 @@
 import React, { Component } from "react"
 
 export default class GarageList extends Component {
+
   render() {
     return (
       <React.Fragment>
-        <section className="card">
+        <article className="contentContainer">
+        <h1> My Vehicles </h1>
+        <section>     
+        <section>
           <div className="taskButton">
             <button
               type="button"
@@ -16,9 +20,7 @@ export default class GarageList extends Component {
               Add Vehicle
             </button>
           </div>
-        </section>
-        <h1> My Vehicles </h1>
-        <section>          
+        </section>     
           {this.props.garage.map(vehicle => (
             <div key={vehicle.id} className="card">
               <div className="card-body">
@@ -28,6 +30,13 @@ export default class GarageList extends Component {
                 <h6>Model: {vehicle.model} </h6> 
                 <h6>Edition: {vehicle.edition} </h6>
                 <h6>Engine Size: {vehicle.engineSize} </h6>
+                <button
+                  id={vehicle.id}
+                  onClick={() => this.props.vehicleTasksSelector(vehicle.id)}
+                  className="btn btn-primary"
+                >
+                  Maintenance Tasks
+                </button>
                 <button 
                   onClick={() => this.props.deleteVehicle(vehicle.id)}
                   className="btn btn-primary"
@@ -44,6 +53,7 @@ export default class GarageList extends Component {
             </div>
           ))}
         </section>
+        </article>
       </React.Fragment>
     )
   }
