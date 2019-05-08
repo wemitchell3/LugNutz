@@ -43,6 +43,7 @@ export default class RegistrationForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <article className="contentContainer">
         <form className="card">
           <div className="form-group">
             <label htmlFor="userName">User Name</label>
@@ -74,6 +75,7 @@ export default class RegistrationForm extends Component {
             </button>
           </div>
         </form>
+        </article>
       </React.Fragment>
     )
   }

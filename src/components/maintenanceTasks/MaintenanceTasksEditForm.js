@@ -1,26 +1,37 @@
-import React, { Component } from "react"
-import MaintenanceTasksManager from "./MaintenanceTasksManager"
+import React, { Component } from "react";
+import MaintenanceTasksManager from "./MaintenanceTasksManager";
+import {
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 export default class MaintenanceTasksEditForm extends Component {
+  // Set initial state for the maintenance tasks component
   state = {
     userId: "",
     taskName: "",
     taskDescription: "",
     targetDate: "",
-    isComplete: "",
+    isComplete: false,
     taskMileage: "",
     apptRequest: "",
     taskTimeStamp: "",
     appointmentDate: "",
-    masterMechanicId: ""
-  }
+    masterMechanicId: "",
+    dropdownOpen: false,
+    showTasks: false,
+    vehicleId: "",
+    vehicleName: []
+  };
 
   updateExistingTask = event => {
-    event.preventDefault()
+    event.preventDefault();
     const task = {
-      userId: 1,
-      //   Number(sessionStorage.getItem("userId"))
+      userId: Number(sessionStorage.getItem("userId")),
       id: Number(this.props.match.params.taskId),
+      vehicleId: Number(this.state.vehicleId),
       taskName: this.state.taskName,
       taskDescription: this.state.taskDescription,
       targetDate: this.state.targetDate,
@@ -30,12 +41,12 @@ export default class MaintenanceTasksEditForm extends Component {
       taskTimeStamp: this.state.taskTimeStamp,
       appointmentDate: this.state.appointmentDate,
       masterMechanicId: this.state.masterMechanicId
-    }
+    };
     this.props
       .updateTask(task)
-      .then(() => this.props.history.push("/maintenanceTasks"))
-    this.props.userSpecificData()
-  }
+      .then(() => this.props.history.push("/maintenanceTasks"));
+    this.props.userSpecificData();
+  };
 
   componentDidMount() {
     MaintenanceTasksManager.get(this.props.match.params.taskId).then(task => {
@@ -48,66 +59,111 @@ export default class MaintenanceTasksEditForm extends Component {
         apptRequest: task.apptRequest,
         taskTimeStamp: task.taskTimeStamp,
         appointmentDate: task.appointmentDate,
-        masterMechanicId: task.masterMechanicId
-      })
-    })
+        masterMechanicId: task.masterMechanicId,
+        vehicleId: task.vehicleId
+      });
+    });
   }
 
   handleFieldChange = event => {
-    const stateToChange = {}
-    stateToChange[event.target.id] = event.target.value
-    this.setState(stateToChange)
-  }
+    const stateToChange = {};
+    stateToChange[event.target.id] = event.target.value;
+    this.setState(stateToChange);
+  };
+
+  handleVehicleName = event => {
+    let vehicleName = this.props.garage.find(
+      name => name.id === Number(event.target.value)
+    );
+    const stateToChange = {};
+    stateToChange.vehicleName = vehicleName;
+    stateToChange[event.target.id] = event.target.value;
+    this.setState(stateToChange);
+  };
 
   // Function for the task completed input check box, that if the box is checked,
   // the value in state will be change from false to true. the "!" in the the folloing code
   // is what is causing the state of false to be flipped to true. !this.state[event.target.id]
   handleCheckBox = event => {
-    const stateToChange = {}
-    stateToChange[event.target.id] = !this.state[event.target.id]
-    this.setState(stateToChange)
-  }
+    const stateToChange = {};
+    stateToChange[event.target.id] = !this.state[event.target.id];
+    this.setState(stateToChange);
+  };
+
+  toggle = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  };
 
   render() {
     return (
       <React.Fragment>
-        <form className="card">
-          <div className="form-group">
+        <section className="contentContainer">
+          <form className="taskForm">
+            <div className="form-group">
+              <ButtonDropdown
+                isOpen={this.state.dropdownOpen}
+                toggle={this.toggle}
+              >
+                <DropdownToggle caret>Select Vehicle</DropdownToggle>
+                <p>
+                  {this.state.vehicleName.modelYear}{" "}
+                  {this.state.vehicleName.make} {this.state.vehicleName.model}
+                </p>
+                <DropdownMenu>
+                  {this.props.garage.map(vehicle => {
+                    return (
+                      <DropdownItem
+                        key={vehicle.id}
+                        onClick={this.handleVehicleName}
+                        id="vehicleId"
+                        value={vehicle.id}
+                      >
+                        {`${vehicle.modelYear} ${vehicle.make} ${
+                          vehicle.model
+                        }`}
+                      </DropdownItem>
+                    );
+                  })}
+                </DropdownMenu>
+              </ButtonDropdown>
+            </div>
             <label htmlFor="taskName"> Task Name </label>
             <input
               type="text"
               required
               className="form-control"
-              onChange={this.handleFieldChange}
               id="taskName"
               value={this.state.taskName}
+              onChange={this.handleFieldChange}
             />
             <label htmlFor="taskDescription"> Task Description </label>
             <input
               type="text"
               required
               className="form-control"
-              onChange={this.handleFieldChange}
               id="taskDescription"
               value={this.state.taskDescription}
+              onChange={this.handleFieldChange}
             />
             <label htmlFor="targetDate"> Target Completion Date </label>
             <input
               type="text"
               required
               className="form-control"
-              onChange={this.handleFieldChange}
               id="targetDate"
               value={this.state.targetDate}
+              onChange={this.handleFieldChange}
             />
             <label htmlFor="taskMileage"> Task Mileage </label>
             <input
               type="text"
               required
               className="form-control"
-              onChange={this.handleFieldChange}
               id="taskMileage"
               value={this.state.taskMileage}
+              onChange={this.handleFieldChange}
             />
             <label> Click CheckBox if Complete: </label>
             <input
@@ -120,22 +176,22 @@ export default class MaintenanceTasksEditForm extends Component {
             <div>
               <button
                 type="submit"
-                onClick={this.updateExistingTask}
                 className="btn btn-primary"
+                onClick={this.updateExistingTask}
               >
                 Submit
               </button>
               <button
                 type="submit"
-                onClick={() => this.props.history.push("/maintenanceTasks")}
                 className="btn btn-primary"
+                onClick={() => this.props.history.push("/maintenanceTasks")}
               >
                 Cancel
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </section>
       </React.Fragment>
-    )
+    );
   }
 }

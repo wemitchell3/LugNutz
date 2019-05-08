@@ -40,6 +40,7 @@ export default class MessageEditForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <article className="contentContainer">
         <form className="form-group">
           <label htmlFor="message">Message: </label>
           <input
@@ -58,6 +59,7 @@ export default class MessageEditForm extends Component {
             Update Message
           </button>
         </form>
+        </article>
       </React.Fragment>
     )
   }

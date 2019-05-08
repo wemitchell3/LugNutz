@@ -20,7 +20,8 @@ export default class MessageForm extends Component {
     } else {
       const message = {
         message: this.state.message,
-        userId: parseInt(sessionStorage.getItem("userId"))
+        userId: parseInt(sessionStorage.getItem("userId")),
+        messageTimeStamp: this.props.getDateTime(new Date()),
       }
       this.props.addMessage(message)
       .then(() => 

@@ -46,6 +46,7 @@ export default class GarageForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <article className="contentContainer">
         <section className="content">
           <form className="vehicleForm">
             <div className="form-group">
@@ -110,8 +111,16 @@ export default class GarageForm extends Component {
             >
               Submit
             </button>
+            <button
+                type="submit"
+                onClick={() => this.props.history.push("/garage")}
+                className="btn btn-primary"
+              >
+                Cancel
+              </button>
           </form>
         </section>
+        </article>
       </React.Fragment>
     )
   }

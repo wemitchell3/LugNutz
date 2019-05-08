@@ -8,6 +8,10 @@ export default {
         return fetch(`${url}/maintenanceTasks?userId=${currentUserId}&isComplete=false`)
         .then(l => l.json())
     },
+    getVehicleTasks(currentUserId, vehicleId) {
+        return fetch(`${url}/maintenanceTasks?userId=${currentUserId}&vehicleId=${vehicleId}&isComplete=false`)
+        .then(l => l.json())
+    },
     postTask(newTask) {
         return fetch(`${url}/maintenanceTasks`, {
             method: "POST",
