@@ -21,7 +21,7 @@ export default class NavBar extends React.Component {
     return (
       <div className="fixed-top">
         <Navbar color="light" light>
-          <NavbarBrand href="/" className="mr-auto">
+          <NavbarBrand href="/" className="mr-auto nav-text">
             LugNutz
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
@@ -38,6 +38,9 @@ export default class NavBar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/messages/">Chat Forum</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/profile/">Profile</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink

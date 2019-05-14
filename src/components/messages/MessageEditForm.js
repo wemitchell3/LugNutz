@@ -42,7 +42,7 @@ export default class MessageEditForm extends Component {
       <React.Fragment>
         <article className="contentContainer">
         <form className="form-group">
-          <label htmlFor="message">Message: </label>
+          <label htmlFor="message" className="label">Edit Message:</label>
           <input
             type="textArea"
             required
@@ -58,6 +58,13 @@ export default class MessageEditForm extends Component {
           >
             Update Message
           </button>
+          <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={() => this.props.history.push("/messages")}
+              >
+                Cancel
+              </button>
         </form>
         </article>
       </React.Fragment>

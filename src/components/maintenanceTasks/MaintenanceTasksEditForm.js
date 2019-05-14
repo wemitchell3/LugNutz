@@ -21,9 +21,8 @@ export default class MaintenanceTasksEditForm extends Component {
     appointmentDate: "",
     masterMechanicId: "",
     dropdownOpen: false,
-    showTasks: false,
     vehicleId: "",
-    vehicleName: []
+    vehicleName: ""
   };
 
   updateExistingTask = event => {
@@ -40,7 +39,8 @@ export default class MaintenanceTasksEditForm extends Component {
       apptRequest: this.state.apptRequest,
       taskTimeStamp: this.state.taskTimeStamp,
       appointmentDate: this.state.appointmentDate,
-      masterMechanicId: this.state.masterMechanicId
+      masterMechanicId: this.state.masterMechanicId,
+      vehicleName: `${this.state.vehicleName.modelYear} ${this.state.vehicleName.make} ${this.state.vehicleName.model}`
     };
     this.props
       .updateTask(task)
@@ -60,7 +60,8 @@ export default class MaintenanceTasksEditForm extends Component {
         taskTimeStamp: task.taskTimeStamp,
         appointmentDate: task.appointmentDate,
         masterMechanicId: task.masterMechanicId,
-        vehicleId: task.vehicleId
+        vehicleId: task.vehicleId,
+        vehicleName: task.vehicleName
       });
     });
   }
@@ -107,9 +108,8 @@ export default class MaintenanceTasksEditForm extends Component {
                 toggle={this.toggle}
               >
                 <DropdownToggle caret>Select Vehicle</DropdownToggle>
-                <p>
-                  {this.state.vehicleName.modelYear}{" "}
-                  {this.state.vehicleName.make} {this.state.vehicleName.model}
+                <p className="label">
+                  {this.state.vehicleName.modelYear} {this.state.vehicleName.make} {this.state.vehicleName.model}
                 </p>
                 <DropdownMenu>
                   {this.props.garage.map(vehicle => {
@@ -129,7 +129,7 @@ export default class MaintenanceTasksEditForm extends Component {
                 </DropdownMenu>
               </ButtonDropdown>
             </div>
-            <label htmlFor="taskName"> Task Name </label>
+            <label htmlFor="taskName" className="label"> Task Name </label>
             <input
               type="text"
               required
@@ -138,7 +138,7 @@ export default class MaintenanceTasksEditForm extends Component {
               value={this.state.taskName}
               onChange={this.handleFieldChange}
             />
-            <label htmlFor="taskDescription"> Task Description </label>
+            <label htmlFor="taskDescription" className="label"> Task Description </label>
             <input
               type="text"
               required
@@ -147,7 +147,7 @@ export default class MaintenanceTasksEditForm extends Component {
               value={this.state.taskDescription}
               onChange={this.handleFieldChange}
             />
-            <label htmlFor="targetDate"> Target Completion Date </label>
+            <label htmlFor="targetDate" className="label"> Target Completion Date </label>
             <input
               type="text"
               required
@@ -156,7 +156,7 @@ export default class MaintenanceTasksEditForm extends Component {
               value={this.state.targetDate}
               onChange={this.handleFieldChange}
             />
-            <label htmlFor="taskMileage"> Task Mileage </label>
+            <label htmlFor="taskMileage" className="label"> Task Mileage </label>
             <input
               type="text"
               required
@@ -165,7 +165,7 @@ export default class MaintenanceTasksEditForm extends Component {
               value={this.state.taskMileage}
               onChange={this.handleFieldChange}
             />
-            <label> Click CheckBox if Complete: </label>
+            <label className="label"> Click CheckBox if Complete: </label>
             <input
               type="checkbox"
               className="btn btn-success"

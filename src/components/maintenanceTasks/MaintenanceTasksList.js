@@ -12,16 +12,17 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import "./maintenanceTasks.css";
 
 export default class MaintenanceTasksList extends Component {
-  state = {
-    dropdownOpen: false,
-    showTasks: false
+  
+    state = {
+    dropDownOpen: false
   };
 
   toggle = () => {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropDownOpen: !this.state.dropDownOpen
     });
   };
 
@@ -29,7 +30,7 @@ export default class MaintenanceTasksList extends Component {
     return (
       <React.Fragment>
         <article className="contentContainer">
-          <h1>My Maintenance Tasks</h1>
+          <h1 className="title">My Maintenance Tasks</h1>
           <section>
             <div className="taskButton">
               <button
@@ -43,23 +44,31 @@ export default class MaintenanceTasksList extends Component {
               </button>
             </div>
           </section>
-          <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <ButtonDropdown
+            className="taskButton"
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
+          >
             <DropdownToggle caret>Filter by Vehicle</DropdownToggle>
+            {/* <p className="label">
+                    {this.state.vehicleName.modelYear}{" "}
+                    {this.state.vehicleName.make} {this.state.vehicleName.model}
+                  </p> */}
             <DropdownMenu>
-              {this.props.garage.map(vehicle => {
+              {/* {this.props.garage.map(vehicle => {
                 return (
                   <DropdownItem
                     key={vehicle.id}
-                    id={vehicle.id}
+                    id="vehicle.id"
                     onClick={() => this.props.vehicleTasksSelector(vehicle.id)}
                   >
                     {`${vehicle.modelYear} ${vehicle.make} ${vehicle.model}`}
                   </DropdownItem>
-                );
-              })}
-              <DropdownItem onClick={() => this.props.userSpecificData()} >
-                All Vehicles
-              </DropdownItem>
+              );
+            })} */}
+            <DropdownItem onClick={() => this.props.userSpecificData()}>
+                  All Vehicles
+                  </DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
           <section>
@@ -67,15 +76,16 @@ export default class MaintenanceTasksList extends Component {
               <div key={task.id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">Task: {task.taskName} </h5>
+                  <h6>Vehicle Name: {task.vehicleName} </h6>
                   <div>
                     <Button
                       color="primary"
-                      id={`t${task.id}`}
+                      id={`toggle${task.id}`}
                       style={{ marginBottom: "1rem" }}
                     >
                       Details
                     </Button>
-                    <UncontrolledCollapse toggler={`#t${task.id}`}>
+                    <UncontrolledCollapse toggler={`#toggle${task.id}`}>
                       <Card>
                         <CardBody>
                           <h6>

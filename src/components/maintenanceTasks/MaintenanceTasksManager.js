@@ -30,6 +30,15 @@ export default {
             body: JSON.stringify(editedTask)
         }).then(data => data.json())
     },
+    patchTask(editedTask) {
+        return fetch(`${url}/maintenanceTasks/${editedTask.id}`, {
+            method:"PATCH",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(editedTask)
+        }).then(data => data.json())
+    },
     deleteTask(id) {
         return fetch(`${url}/maintenanceTasks/${id}`, {
             method: "DELETE"
