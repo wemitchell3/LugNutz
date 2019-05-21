@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was designed using React [Create React App](https://github.com/facebook/create-react-app) with Reactstrap [Reactstrap your App](https://reactstrap.github.io).
 
 ## Available Scripts
 
@@ -13,11 +13,15 @@ ERD [https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7](https://dbdiagram.io/d/5cc
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
+In the root directory, type nom start. This runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+### `Start JSON Sever`
+
+In the lugnutz/api folder type: json-server -p 8088 -w lugnutz.json. This will start the JSON database for the project.
 
 ### `npm test`
 

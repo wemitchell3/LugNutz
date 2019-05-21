@@ -22,7 +22,8 @@ export default class MessageEditForm extends Component {
     const updatedMessage = {
       id: Number(this.props.match.params.messageId),
       message: this.state.message,
-      userId: parseInt(sessionStorage.getItem("userId"))
+      userId: parseInt(sessionStorage.getItem("userId")),
+      messageTimeStamp: this.props.getDateTime(new Date())
     }
     this.props.updateMessage(updatedMessage)
       .then(() => this.props.history.push("/messages"))

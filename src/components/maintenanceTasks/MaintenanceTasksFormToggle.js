@@ -75,6 +75,7 @@ export default class MaintenanceTasksFormToggle extends Component {
   // Function for the task completed input check box, that if the box is checked,
   // the value in state will be change from false to true. the "!" in the the folloing code
   // is what is causing the state of false to be flipped to true. !this.state[event.target.id]
+
   handleCheckBox = event => {
     const stateToChange = {};
     stateToChange[event.target.id] = !this.state[event.target.id];
@@ -94,6 +95,7 @@ export default class MaintenanceTasksFormToggle extends Component {
 
   // This creates form elements and captures user inputs when submit is clicked by invoking the
   // handleFieldChange function.
+
   render() {
     return (
       <React.Fragment>
@@ -110,10 +112,6 @@ export default class MaintenanceTasksFormToggle extends Component {
                   toggle={this.toggle}
                 >
                   <DropdownToggle caret>Select Vehicle</DropdownToggle>
-                  <p className="label">
-                    {this.state.vehicleName.modelYear}{" "}
-                    {this.state.vehicleName.make} {this.state.vehicleName.model}
-                  </p>
                   <DropdownMenu>
                     {this.props.garage.map(vehicle => {
                       return (
@@ -132,6 +130,10 @@ export default class MaintenanceTasksFormToggle extends Component {
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
+              <p className="vehicleName">
+                    {this.state.vehicleName.modelYear}{" "}
+                    {this.state.vehicleName.make}{" "}{this.state.vehicleName.model}
+                  </p>
               {this.state.showForm && (
                 <MaintenanceTasksForm
                   handleCheckBox={this.handleCheckBox}

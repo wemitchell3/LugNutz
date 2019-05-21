@@ -39,9 +39,9 @@ export default class NavBar extends React.Component {
               <NavItem>
                 <NavLink href="/messages/">Chat Forum</NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/profile/">Profile</NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink
                   onClick={() => sessionStorage.clear()}

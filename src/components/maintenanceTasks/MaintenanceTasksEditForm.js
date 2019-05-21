@@ -108,9 +108,6 @@ export default class MaintenanceTasksEditForm extends Component {
                 toggle={this.toggle}
               >
                 <DropdownToggle caret>Select Vehicle</DropdownToggle>
-                <p className="label">
-                  {this.state.vehicleName.modelYear} {this.state.vehicleName.make} {this.state.vehicleName.model}
-                </p>
                 <DropdownMenu>
                   {this.props.garage.map(vehicle => {
                     return (
@@ -129,6 +126,9 @@ export default class MaintenanceTasksEditForm extends Component {
                 </DropdownMenu>
               </ButtonDropdown>
             </div>
+            <p className="vehicleName">
+                  {this.state.vehicleName.modelYear} {this.state.vehicleName.make} {this.state.vehicleName.model}
+                </p>
             <label htmlFor="taskName" className="label"> Task Name </label>
             <input
               type="text"
@@ -149,7 +149,7 @@ export default class MaintenanceTasksEditForm extends Component {
             />
             <label htmlFor="targetDate" className="label"> Target Completion Date </label>
             <input
-              type="text"
+              type="date"
               required
               className="form-control"
               id="targetDate"

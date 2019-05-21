@@ -16,7 +16,7 @@ body {
     border-radius: 15px;
     background: url("images/metal-texture-background.jpg");
     background-size: 250%;
-    /* background-attachment: fixed; */
+    
     background-repeat: no-repeat
 }
 .label {
@@ -42,4 +42,11 @@ body {
 }
 .btn{
     margin-top: 10px
+}
+.vehicleName {
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: silver
+    
 }

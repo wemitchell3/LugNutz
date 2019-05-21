@@ -26,7 +26,8 @@ class ApplicationViews extends Component {
     garage: [],
     maintenanceTasks: [],
     messages: [],
-    userId: []
+    userId: [],
+    showName: false
   }
 
   componentDidMount() {
@@ -76,7 +77,7 @@ class ApplicationViews extends Component {
   vehicleTasksSelector = (vehicleId) => {
     let currentUserId = sessionStorage.getItem("userId")
     return MaintenanceTasksManager.getVehicleTasks(currentUserId, vehicleId)
-    .then(r => this.setState({ maintenanceTasks : r }))
+    .then(r => this.setState({ maintenanceTasks: r, showName: true }))
     .then(() => this.props.history.push("/maintenanceTasks/"))
   }
 
@@ -247,6 +248,7 @@ class ApplicationViews extends Component {
               garage={this.state.garage} 
               userSpecificData={this.userSpecificData}
               deleteTask={this.deleteTask}
+              showName={this.state.showName}
               />
             } else {
               return < Redirect to="/"
@@ -315,7 +317,7 @@ class ApplicationViews extends Component {
             return (
             <MessageEditForm {...props} 
             updateMessage={this.updateMessage} 
-            userSpecificData={this.userSpecificData} 
+            userSpecificData={this.userSpecificData}getDateTime={this.getDateTime}
             />
             )
           }}
