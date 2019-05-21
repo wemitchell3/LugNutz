@@ -10,6 +10,7 @@ class LugNutz extends Component {
       <React.Fragment>
         <NavBar />
         <ApplicationViews className="contentContainer" />
+        
       </React.Fragment>
     )
   }

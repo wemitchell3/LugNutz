@@ -36,8 +36,8 @@ export default class Login extends Component {
             <React.Fragment>
             <article className="contentContainer">
             <form onSubmit={this.handleLogin} className="content">
-                <h1 className="h3 mb-3 font-weight-normal">Please Log In</h1>
-                <label htmlFor="userName">
+                <h1 className="title">Please Log In</h1>
+                <label htmlFor="userName" className="label">
                     User Name
                 </label>
                 <input onChange={this.handleFieldChange} 
@@ -46,7 +46,7 @@ export default class Login extends Component {
                     id="userName"
                     placeholder="user Name"
                     required="" autoFocus="" />
-                <label htmlFor="email">
+                <label htmlFor="email" className="label">
                     Email
                 </label>
                 <input onChange={this.handleFieldChange} 

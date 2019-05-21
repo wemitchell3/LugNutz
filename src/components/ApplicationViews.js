@@ -9,7 +9,7 @@ import GarageManager from "./garage/GarageManager"
 import Login from "./login/Login"
 import RegistrationForm from "./login/RegistrationForm"
 import MaintenanceTasksEditForm from "./maintenanceTasks/MaintenanceTasksEditForm"
-import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksForm"
+import MaintenanceTasksForm from "./maintenanceTasks/MaintenanceTasksFormToggle"
 import MaintenanceTasksList from "./maintenanceTasks/MaintenanceTasksList"
 import MaintenanceTasksManager from "./maintenanceTasks/MaintenanceTasksManager"
 import MessageEditForm from "./messages/MessageEditForm"
@@ -26,7 +26,8 @@ class ApplicationViews extends Component {
     garage: [],
     maintenanceTasks: [],
     messages: [],
-    userId: []
+    userId: [],
+    showName: false
   }
 
   componentDidMount() {
@@ -76,7 +77,7 @@ class ApplicationViews extends Component {
   vehicleTasksSelector = (vehicleId) => {
     let currentUserId = sessionStorage.getItem("userId")
     return MaintenanceTasksManager.getVehicleTasks(currentUserId, vehicleId)
-    .then(r => this.setState({ maintenanceTasks : r }))
+    .then(r => this.setState({ maintenanceTasks: r, showName: true }))
     .then(() => this.props.history.push("/maintenanceTasks/"))
   }
 
@@ -93,7 +94,7 @@ class ApplicationViews extends Component {
   }
 
   updateTask = editedTask => {
-    return MaintenanceTasksManager.putTask(editedTask)
+    return MaintenanceTasksManager.patchTask(editedTask)
     .then(() => this.userSpecificData())
   }
 
@@ -167,6 +168,12 @@ class ApplicationViews extends Component {
     return day + " " + hr + ":" + min + ampm + " " + month + " " + date + " " + year
   }
 
+  handleFieldChange = event => {
+    const stateToChange = {};
+    stateToChange[event.target.id] = event.target.value;
+    this.setState(stateToChange);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -197,7 +204,6 @@ class ApplicationViews extends Component {
             if (this.isAuthenticated()) {
             return <GarageList {...props}
               garage={this.state.garage} 
-              allTasks={this.state.allTasks}
               userSpecificData={this.userSpecificData}
               deleteVehicle={this.deleteVehicle} 
               vehicleTasksSelector={this.vehicleTasksSelector}
@@ -236,12 +242,13 @@ class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
             return <MaintenanceTasksList {...props} 
-              allTasks={this.state.allTasks}
-              maintenanceTasks={this.state.maintenanceTasks}
+              handleFieldChange={this.handleFieldChange}
+              maintenanceTasks={this.state.maintenanceTasks.reverse()}
               vehicleTasksSelector={this.vehicleTasksSelector}
               garage={this.state.garage} 
               userSpecificData={this.userSpecificData}
               deleteTask={this.deleteTask}
+              showName={this.state.showName}
               />
             } else {
               return < Redirect to="/"
@@ -310,7 +317,7 @@ class ApplicationViews extends Component {
             return (
             <MessageEditForm {...props} 
             updateMessage={this.updateMessage} 
-            userSpecificData={this.userSpecificData} 
+            userSpecificData={this.userSpecificData}getDateTime={this.getDateTime}
             />
             )
           }}

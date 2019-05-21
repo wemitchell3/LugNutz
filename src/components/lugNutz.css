@@ -2,3 +2,51 @@
     margin-top: 58px;
     padding: 20px
 }
+body {
+    background: url("images/carbonFiber.jpg");
+    background-size: 125%;
+    background-attachment: fixed;
+    background-repeat: no-repeat
+}
+.title {
+    color: silver
+}
+.card {
+    margin-top: 25px;
+    border-radius: 15px;
+    background: url("images/metal-texture-background.jpg");
+    background-size: 250%;
+    
+    background-repeat: no-repeat
+}
+.label {
+    color: silver
+}
+
+.taskButton {
+    margin: 5px
+}
+.vehicleImage {
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+.navbar {
+    background: url("images/metal-texture-background.jpg");
+    background-size: 125%;
+    background-attachment: fixed;
+    background-repeat: no-repeat
+}
+.nav-text {
+    color: red
+}
+.btn{
+    margin-top: 10px
+}
+.vehicleName {
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: silver
+    
+}

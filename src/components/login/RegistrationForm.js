@@ -44,9 +44,8 @@ export default class RegistrationForm extends Component {
     return (
       <React.Fragment>
         <article className="contentContainer">
-        <form className="card">
           <div className="form-group">
-            <label htmlFor="userName">User Name</label>
+            <label htmlFor="userName" className="label">User Name</label>
             <input
               type="text"
               required
@@ -56,7 +55,7 @@ export default class RegistrationForm extends Component {
               placeholder="user name"
               value={this.state.userName}
             />
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className="label">Email:</label>
             <input
               type="text"
               required
@@ -74,7 +73,6 @@ export default class RegistrationForm extends Component {
               Submit
             </button>
           </div>
-        </form>
         </article>
       </React.Fragment>
     )

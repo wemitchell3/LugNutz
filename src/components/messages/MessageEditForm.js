@@ -22,7 +22,8 @@ export default class MessageEditForm extends Component {
     const updatedMessage = {
       id: Number(this.props.match.params.messageId),
       message: this.state.message,
-      userId: parseInt(sessionStorage.getItem("userId"))
+      userId: parseInt(sessionStorage.getItem("userId")),
+      messageTimeStamp: this.props.getDateTime(new Date())
     }
     this.props.updateMessage(updatedMessage)
       .then(() => this.props.history.push("/messages"))
@@ -42,7 +43,7 @@ export default class MessageEditForm extends Component {
       <React.Fragment>
         <article className="contentContainer">
         <form className="form-group">
-          <label htmlFor="message">Message: </label>
+          <label htmlFor="message" className="label">Edit Message:</label>
           <input
             type="textArea"
             required
@@ -58,6 +59,13 @@ export default class MessageEditForm extends Component {
           >
             Update Message
           </button>
+          <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={() => this.props.history.push("/messages")}
+              >
+                Cancel
+              </button>
         </form>
         </article>
       </React.Fragment>

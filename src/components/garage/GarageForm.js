@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { storage } from "../firebase/firebase"
 import "./garage.css"
 
 export default class GarageForm extends Component {
@@ -9,7 +10,9 @@ export default class GarageForm extends Component {
     make: "",
     model: "",
     edition: "",
-    engineSize: ""
+    engineSize: "",
+    vehicleMileage: "",
+    vehicleImageURL: ""
   }
 
   // Local method for input validation, creating a garage object, and
@@ -27,6 +30,8 @@ export default class GarageForm extends Component {
         model: this.state.model,
         edition: this.state.edition,
         engineSize: this.state.engineSize,
+        vehicleMileage: this.state.vehicleMileage,
+        vehicleImageURL: this.state.vehicleImageURL
       }
       // Create the vehicle and redirect user to the vehicle list
       this.props.addVehicle(vehicle)
@@ -42,6 +47,42 @@ export default class GarageForm extends Component {
     this.setState(stateToChange)
   }
 
+  handlePhoto = event => {
+    if (event.target.files[0]) {
+      const image = event.target.files[0]
+      this.setState({
+      photoLink: image
+    })
+    }
+  }
+
+  handleUpload = () => {
+    const image = this.state.photoLink
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on("state_changed",
+    (snapshot) => {
+      console.log(snapshot)
+      this.setState({
+        loadMin: snapshot.bytesTransferred,
+        loadMax: snapshot.totalBytes
+      })
+    },
+    (error) => {
+  
+    },
+    () => {
+      storage.ref('images').child(image.name).getDownloadURL().then(vehicleImageURL => {
+        this.setState({ vehicleImageURL })
+      })
+    })
+  } 
+
+  handleImage = () => {
+    if (this.state.vehicleImageURL !== "") {
+      return <img className="img-fluid vehicleImage" src={this.state.vehicleImageURL} alt="Vehicle" />
+    }
+  }
+
   // Create form elements and capture user inputs when submit is clicked
   render() {
     return (
@@ -50,7 +91,7 @@ export default class GarageForm extends Component {
         <section className="content">
           <form className="vehicleForm">
             <div className="form-group">
-              <label htmlFor="modelYear">Model Year</label>
+              <label htmlFor="modelYear" className="label">Model Year</label>
               <input
                 type="text"
                 required
@@ -61,7 +102,7 @@ export default class GarageForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="make">Make</label>
+              <label htmlFor="make" className="label">Make</label>
               <input
                 type="text"
                 required
@@ -72,7 +113,7 @@ export default class GarageForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="model">Model</label>
+              <label htmlFor="model" className="label">Model</label>
               <input
                 type="text"
                 required
@@ -83,7 +124,7 @@ export default class GarageForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="edition">Edition</label>
+              <label htmlFor="edition" className="label">Edition</label>
               <input
                 type="text"
                 required
@@ -94,15 +135,30 @@ export default class GarageForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="engineSize">Engine Size</label>
+              <label htmlFor="engineSize" className="label">Engine Size</label>
               <input
                 type="text"
                 required
                 className="form-control"
                 onChange={this.handleFieldChange}
                 id="engineSize"
-                placeholder="Enigine Size?"
+                placeholder="Engine Size?"
               />
+            </div>
+            < div className = "form-group" >
+              <label htmlFor = "vehicleMileage" className = "label">Current Miles On Vehicle</label> 
+              <input
+              type = "text"
+              required
+              className = "form-control"
+              onChange = {this.handleFieldChange}
+              id = "vehicleMileage"
+              placeholder = "Vehicle Mileage?"/>
+            </div>
+            <div  className="">
+            <input type="file" onChange={this.handlePhoto} className="label" id="photolink" />
+            <button className="btn btn-primary saveImage" type="button" onClick={() => this.handleUpload()}>Upload</button>
+            {this.handleImage()}
             </div>
             <button
               type="submit"

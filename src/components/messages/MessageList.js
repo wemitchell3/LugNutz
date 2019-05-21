@@ -37,7 +37,7 @@ export default class MessageList extends Component {
     return (
       <React.Fragment>
         <article className="messages contentContainer">
-        <h3>Ask The Members</h3>
+          <h3 className="label">Ask The Members</h3>
           <section className="send-message">
             <MessageForm {...this.props} />
           </section>
@@ -48,7 +48,7 @@ export default class MessageList extends Component {
             }}
           >
             {this.props.messages.map(message => (
-              <div key={message.id} className="card list-group-item">
+              <div key={message.id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">
                     {
@@ -56,10 +56,10 @@ export default class MessageList extends Component {
                         .userName
                     }
                   </h5>
-                  <div className="card-text">{message.message}
-                  <p>
-                  {message.messageTimeStamp} </p>
-                    </div>
+                  <div className="card-text">
+                    {message.message}
+                    <p>{message.messageTimeStamp} </p>
+                  </div>
                   {this.editButton(message)}
                   {this.deleteButton(message)}
                 </div>
