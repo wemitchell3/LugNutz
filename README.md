@@ -1,19 +1,20 @@
 This project was designed using React [Create React App](https://github.com/facebook/create-react-app) with Reactstrap [Reactstrap your App](https://reactstrap.github.io).
 
+## Project links to Initial Proposl, Mock Up, and ERD. 
+
+Initial Proposal [https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p](https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p)<br>
+
+Mock Up[https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae](https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae)<br>
+
+ERD [https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7](https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7)<br>
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-## Project links to Initial Proposl, Mock Up, and ERD. 
-
-Initial Proposal [https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p](https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p)<br>
-Mock Up[https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae](https://app.moqups.com/E4SvJVXrf7/edit/page/a777bf3ae)<br>
-ERD [https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7](https://dbdiagram.io/d/5cc35758f7c5bb70c72fc5c7)<br>
-
-
 ### `npm start`
 
-In the root directory, type nom start. This runs the app in development mode.<br>
+In the root directory, type npm start. This runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
