@@ -1,6 +1,10 @@
-This project was designed using React [Create React App](https://github.com/facebook/create-react-app) with Reactstrap [Reactstrap your App](https://reactstrap.github.io).
+LugNutz Consumer README
 
-## Project links to Initial Proposl, Mock Up, and ERD. 
+## Project links to Initial Proposale, Mock Up, and ERD. 
+
+This project was designed and styled as a mobile webapp. Some responsive design has been implimented but the app is not intended to be a desktop app. Please open developer tools and set the view window as the size of a mobile device.
+
+This project was designed using React [Create React App](https://github.com/facebook/create-react-app) with Reactstrap [Reactstrap your App](https://reactstrap.github.io).
 
 Initial Proposal [https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p](https://docs.google.com/document/d/12JCqUH8-aP45Fvkd4Otpiu9TVqvYY-DdIEzfp0LAK6o/edit#heading=h.p9bkn4ry851p)<br>
 
@@ -14,10 +18,14 @@ In the project directory, you can run:
 
 ### `npm start`
 
-In the root directory, type npm start. This runs the app in development mode.<br>
+In the root directory, type npm start. This runs the app in development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+Open developer tools and set view port to the size of a mobile device.
+
+The page will reload if you make edits.
+
 You will also see any lint errors in the console.
 
 ### `Start JSON Sever`
