@@ -2,7 +2,7 @@ LugNutz README
 
 ## Project links to Initial Proposale, Mock Up, and ERD. 
 
-This project was designed and styled as a mobile webapp. Some responsive design has been implimented but the app is not intended to be a desktop app. Please open developer tools and set the view window as the size of a mobile device.
+This project was designed and styled as a mobile webapp. Some responsive design has been implemented but the app is not intended to be a desktop app. Please open developer tools and set the view window as the size of a mobile device.
 
 This project was designed using React [Create React App](https://github.com/facebook/create-react-app) with Reactstrap [Reactstrap your App](https://reactstrap.github.io).
 
