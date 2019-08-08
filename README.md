@@ -1,4 +1,4 @@
-LugNutz Consumer README
+LugNutz README
 
 ## Project links to Initial Proposale, Mock Up, and ERD. 
 
